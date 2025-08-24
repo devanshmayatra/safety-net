@@ -1,11 +1,13 @@
 // --- RECEIVER APP (lib/main.dart) ---
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-const String serverUrl = 'http://YOUR_SERVER_IP:3000';
+const String serverUrl = 'https://safety-net-la20.onrender.com/';
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
@@ -22,7 +24,7 @@ Future<void> setupNotifications() async {
   FirebaseMessaging messaging = FirebaseMessaging.instance;
   await messaging.requestPermission();
   final String? token = await messaging.getToken();
-  print("My Device FCM Token: $token");
+  log("My Device FCM Token: $token");
   if (token != null) {
     try {
       await http.post(
@@ -30,15 +32,15 @@ Future<void> setupNotifications() async {
         headers: {'Content-Type': 'application/json'},
         body: json.encode({'token': token}),
       );
-      print("Receiver device registered successfully!");
+      log("Receiver device registered successfully!");
     } catch (e) {
-      print("Error registering device: $e");
+      log("Error registering device: $e");
     }
   }
 
   // Handle foreground messages
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    print('Got a message whilst in the foreground!');
+    log('Got a message whilst in the foreground!');
     RemoteNotification? notification = message.notification;
     AndroidNotification? android = message.notification?.android;
     String sound = 'default';

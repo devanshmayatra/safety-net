@@ -51,6 +51,8 @@ app.post('/register-device', async (req, res) => {
 
 // Endpoint for the Sender app's NORMAL button
 app.post('/send-normal', async (req, res) => {
+
+  const { message } = await req.body;
   try {
     // 1. Retrieve the token from Firestore
     const doc = await receiverDeviceRef.get();
@@ -62,12 +64,11 @@ app.post('/send-normal', async (req, res) => {
 
     const receiverToken = doc.data().token;
 
-    // 2. Send the notification (same logic as before)
     console.log('-> Received request for a NORMAL ping.');
     const message = {
       notification: {
-        title: 'Ping! 👋',
-        body: 'Just letting you know I\'m thinking of you.',
+        title: 'Hey Spanky 💕',
+        body: 'Just letting you know I miss you! ' + (message ? `${message}` : ''),
       },
       token: receiverToken,
     };
