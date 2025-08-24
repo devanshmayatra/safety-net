@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "520893413502",
+    "project_id": "notification-receiver-8064d",
+    "storage_bucket": "notification-receiver-8064d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:520893413502:android:1e8603136cce8a72c7002f",
+        "android_client_info": {
+          "package_name": "com.example.receiver_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlJkRM9SrwUo9Q-WQq6vkXqFhAVRNqoNQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
