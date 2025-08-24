@@ -53,6 +53,7 @@ app.post('/register-device', async (req, res) => {
 app.post('/send-normal', async (req, res) => {
 
   const { message } = await req.body;
+  const messageText = message || '';
   try {
     // 1. Retrieve the token from Firestore
     const doc = await receiverDeviceRef.get();
@@ -68,7 +69,7 @@ app.post('/send-normal', async (req, res) => {
     const message = {
       notification: {
         title: 'Hey Spanky 💕',
-        body: 'Just letting you know I miss you! ' + (message ? `${message}` : ''),
+        body: 'Just letting you know I miss you! ' + messageText
       },
       token: receiverToken,
     };
