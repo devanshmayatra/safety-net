@@ -68,7 +68,7 @@ app.post('/send-normal', async (req, res) => {
     const message = {
       notification: {
         title: 'Hey Spanky 💕',
-        body: 'Just letting you know I miss you! ' + messageText
+        body: "what's my princess up to?! " + messageText
       },
       token: receiverToken,
     };
@@ -85,6 +85,7 @@ app.post('/send-normal', async (req, res) => {
 
 // Endpoint for the Sender app's PANIC button
 app.post('/send-panic', async (req, res) => {
+  const messageText = req.body.message || '';
   try {
     // 1. Retrieve the token from Firestore
     const doc = await receiverDeviceRef.get();
@@ -102,7 +103,7 @@ app.post('/send-panic', async (req, res) => {
       data: { type: 'panic' },
       notification: {
         title: '🚨 PANIC ALERT! 🚨',
-        body: 'This is an urgent alert. Please check in immediately.',
+        body: messageText ? messageText : 'Fucking get up time for you to be man !',
       },
       android: {
         priority: 'high',
