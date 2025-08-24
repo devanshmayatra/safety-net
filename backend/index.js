@@ -52,8 +52,7 @@ app.post('/register-device', async (req, res) => {
 // Endpoint for the Sender app's NORMAL button
 app.post('/send-normal', async (req, res) => {
 
-  const { message } = await req.body;
-  const messageText = message || '';
+  const messageText = req.body.message || '';
   try {
     // 1. Retrieve the token from Firestore
     const doc = await receiverDeviceRef.get();
