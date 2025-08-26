@@ -108,8 +108,8 @@ app.post('/send-panic', async (req, res) => {
       android: {
         priority: 'high',
         notification: {
-          sound: 'alarm',
-          channelId: 'high_importance_channel',
+          sound: 'panic_alarm',
+          channelId: 'panic_alerts_channel',
         },
       },
       token: receiverToken,
